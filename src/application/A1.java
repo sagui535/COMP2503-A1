@@ -71,7 +71,7 @@ public class A1
 
     	for (int i = 0; i < Math.min(10, wordlist.size()); i++) {
             Token token = wordlist.get(i);
-            System.out.println(token.getWord() + ": " + token.getFrequency());
+            System.out.println(token.getWord() + " : " + token.getFrequency());
         }
     }
     
@@ -88,7 +88,7 @@ public class A1
 
            for (int i = 0; i < Math.min(10, wordlist.size()); i++) {
                Token token = wordlist.get(i);
-               System.out.println(token.getWord() + ": " + token.getFrequency());
+               System.out.println(token.getWord() + " : " + token.getFrequency());
            }
        }
 
@@ -103,7 +103,7 @@ public class A1
 
     	    for (Token token : wordlist) {
     	        if (!token.getWord().isEmpty()) {
-    	            System.out.println(token.getWord() + ": " + token.getFrequency());
+    	            System.out.println(token.getWord() + " : " + token.getFrequency());
     	        }
     	    }   
    }
@@ -167,7 +167,7 @@ public class A1
 
    /** Run the program. Read the file, then print the results. 
    */
-   public void run() 
+   public void run()
    {
       readFile();
       printResults();
