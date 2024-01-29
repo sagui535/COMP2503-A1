@@ -36,14 +36,23 @@ public class A1
    private int stopwordcount = 0;
 
    private Scanner input = new Scanner( System.in);
-
-   public static void main( String[ ] args) 
+   
+   /**
+    * The main method to execute the program. Initializes the A1.
+    * 
+    * @param args Not used in this application.
+    */
+   public static void main(String[ ] args) 
    {	
       A1 a1 = new A1();
 
       a1.run();
    }
 
+   /**
+    * Prints the results of the words. This includes total words count, unique words count,
+    * stop words count, and lists of most frequent, least frequent, and all words sorted alphabetically.
+    */
    private void printResults() 
    {
        System.out.println( "Total Words: " + totalwordcount);
@@ -58,13 +67,11 @@ public class A1
        System.out.println();
        System.out.println( "All");
        sortAll();
-       
-       /* TODO:
-        * Use collection sort to sort the wordlist in descending frequency order.
-        * Then print the first 10.
-        */
-       // sorts the word list in descending frequency order and then print the first 10.  
    }
+   
+   /**
+    * Sorts the word list in descending order of frequency and prints the first 10 words.
+    */
     private void mostFreq(){
     	 Collections.sort(wordlist, Comparator.comparing(Token::getFrequency, Comparator.reverseOrder())
     			.thenComparing(Token::getWord));
@@ -75,14 +82,10 @@ public class A1
         }
     }
     
-       /* TODO:
-        * Use collection sort to sort the wordlist in ascending frequency order.
-        * Then print the first 10.
-        */
-       // sorts the word list in ascending frequency order and then print the first 10.
+    /**
+     * Sorts the word list in ascending order of frequency and prints the first 10 words.
+     */
        private void leastFreq() {
-           // TODO: Use collection sort to sort the wordlist in ascending frequency order.
-           // Then print the first 10.
            Collections.sort(wordlist, Comparator.comparing(Token::getFrequency)
            		.thenComparing(Token::getWord));
 
@@ -92,12 +95,9 @@ public class A1
            }
        }
 
-       
-       /* TODO:
-        * Use collection sort to sort the wordlist by its natural ordering (alphabetical).
-        * Then print all the words.
+       /**
+        * Sorts the word list alphabetically and prints all words with their frequencies.
         */
-       // sorts word list in alphabetical order and then print all words
        private void sortAll() {
     	   Collections.sort(wordlist, Comparator.comparing(Token::getWord));
 
@@ -121,12 +121,6 @@ public class A1
    */
    private void readFile() 
    {
-	   /* TODO: read the input one word at a time, turn to lower-case, 
-	    * trim the whitespaces and all other characters but a-z.
-	    * If the word is a stopword, ignore it. Otherwise,
- 		* Create a new token object, if not already in the wordlist, 
- 		* add the token to the word list, otherwise, increase the frequency count.
- 		*/
 	   while (input.hasNext()) {
            String word = input.next().toLowerCase().replaceAll("[^a-z]", "");
 
@@ -141,6 +135,12 @@ public class A1
 	   }
    }
    
+   /**
+    * Processes a single word: checks if it's already in the word list and updates frequency, or adds it
+    * if it's not present.
+    * 
+    * @param word The word to process.
+    */
    private void processToken(String word) {
        // Check if the word is already in the wordlist
        Token token = new Token(word);
@@ -156,6 +156,12 @@ public class A1
        totalwordcount++;
    }
    
+   /**
+    * Determines whether a given word is a stop word.
+    * 
+    * @param word The word to check.
+    * @return true if the word is a stop word, false otherwise.
+    */
    private boolean isStopWord(String word) {
 	   for (String stopword : stopwords) {
 		   if (stopword.equals(word)) {
@@ -165,12 +171,12 @@ public class A1
 	   return false;
    }
 
-   /** Run the program. Read the file, then print the results. 
-   */
+   /**
+    * The main method that drives the program. It reads the file and then prints the results.
+    */
    public void run()
    {
       readFile();
       printResults();
    }
-
 }
